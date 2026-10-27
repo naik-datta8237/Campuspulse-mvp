@@ -6,7 +6,12 @@ import { AppModule } from "./app.module";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.enableCors({ origin: (process.env.CORS_ORIGIN ?? "http://localhost:3000").split(","), credentials: true });
+  
+  app.enableCors({ 
+    origin: (process.env.CORS_ORIGIN ?? "http://localhost:3000").split(","), 
+    credentials: true 
+  });
+
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true, // drop unknown fields
@@ -19,8 +24,13 @@ async function bootstrap() {
       },
     }),
   );
+
   const port = Number(process.env.PORT ?? 4000);
-  await app.listen(port);
-  console.log(`CampusPulse API running on http://localhost:${port}`);
+  
+  // Binding to "0.0.0.0" is required for Railway to forward external traffic
+  await app.listen(port, "0.0.0.0");
+  
+  console.log(`CampusPulse API running on port ${port}`);
 }
+
 bootstrap();
