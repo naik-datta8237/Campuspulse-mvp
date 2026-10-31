@@ -12,7 +12,7 @@ Built and fully integrated end-to-end by a four-person team over two iterative d
 
 Access the live application:
 
-**https://campuspulse-mvp.vercel.app/**
+**[https://campuspulse-mvp.vercel.app/](https://campuspulse-mvp-j8dr.vercel.app/)**
 
 ### 🔑 Demo Access
 
